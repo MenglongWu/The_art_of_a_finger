@@ -14,11 +14,12 @@ function Title() {
 	poweron=$(date -d "$(awk -F. '{print $1}' /proc/uptime) second ago" +"%Y-%m-%d %H:%M:%S")
 	net=$(ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}')
 
-	echo -e '\t序列号  :' ${SN} '   \n' \
+	echo -e '\t报告名  :' ${1} '   \n' \
+			'\t序列号  :' ${SN} '   \n' \
 			'\t主机    :' $(hostname) '   \n' \
-			'\t启动时间:' ${poweron} '  ' '当前时间 :' ${now} '\n' \
+			'\t启动时间:' ${poweron} '  ' '当前时间 :' ${now} '   \n' \
 			'\t内核    :' $(uname -s -n -r) '   \n' \
-			'            '$(uname -v) '\n' \
+			'            '$(uname -v) '   \n' \
 			'\t网络    :' ${net}
 	echo -----------------------------------------------------------
 }
@@ -39,7 +40,7 @@ export -f SubjectTitle_H1
 # 2级标题，段前空格1行，首行空2格
 # param 1 : 标题名称
 function SubjectTitle_H2() {
-	echo -e "\n## " ${1} \
+	echo -e "\n##" ${1} \
 	"\n----------------------------------------------------------------"
 }
 export -f SubjectTitle_H2
@@ -48,7 +49,7 @@ export -f SubjectTitle_H2
 # 2级标题，段前空格1行，首行空4格
 # param 1 : 标题名称
 function SubjectTitle_H3() {
-	echo -e "\n###  " ${1} \
+	echo -e "\n###" ${1} \
 	"\n----------------------------------------------------------------"
 }
 export -f SubjectTitle_H3
@@ -56,7 +57,7 @@ export -f SubjectTitle_H3
 # 2级标题，段前空格1行，首行空4格
 # param 1 : 标题名称
 function SubjectTitle_H4() {
-	echo -e "\n####    " ${1} \
+	echo -e "\n####" ${1} \
 	"\n----------------------------------------------------------------"
 }
 export -f SubjectTitle_H4
@@ -65,7 +66,9 @@ export -f SubjectTitle_H4
 
 function SubjectTitle_Warrning() {
 	# echo -e "\n#### " ${1} 
-	echo -e "**" ${1} "**"
+	Font_Color_Start red
+	echo -e "**"${1}"**"
+	Font_Color_End
 }
 export -f SubjectTitle_Warrning
 
