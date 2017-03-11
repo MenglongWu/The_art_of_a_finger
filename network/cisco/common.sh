@@ -1,5 +1,12 @@
 #!/bin/bash
 
+
+
+function code_comments() {
+	echo '#############################'
+	echo "# $*"
+}
+
 #
 # $1 函数名
 # $2 当前参数
