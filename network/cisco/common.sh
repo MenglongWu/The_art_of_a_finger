@@ -12,8 +12,8 @@ function code_comments() {
 # $2 当前参数
 # $3 函数最大参数个数
 function param_less() {
-	if [ "$2" -lt "$3" ]; then
-		echo "$1 参数不足 $3" > /dev/pty1
+	if [ "${2}" -lt "${3}" ]; then
+		echo "${1} 参数不足 ${3}"
 		exit;
 	fi
 }
